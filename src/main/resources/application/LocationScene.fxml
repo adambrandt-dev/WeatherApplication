@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LocationSceneController">
+   <children>
+      <Button layoutX="38.0" layoutY="349.0" mnemonicParsing="false" onAction="#switchToLocationShowScene" text="Back" />
+
+      <Label layoutX="41.0" layoutY="199.0" text="Latitude:" wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="41.0" layoutY="237.0" text="Longitude:" wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="39.0" layoutY="276.0" text="Region:" wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="312.0" text="Country:" wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="addButton" layoutX="519.0" layoutY="349.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="43.0" text="Add" />
+      <Label layoutX="38.0" layoutY="162.0" prefHeight="34.0" prefWidth="177.0" text="Add new location:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="table" layoutX="37.0" layoutY="27.0" prefHeight="136.0" prefWidth="522.0">
+        <columns>
+           <TableColumn fx:id="loc_id" resizable="false" text="ID" />
+           <TableColumn fx:id="loc_latitude" prefWidth="100.0" resizable="false" text="Latitude" />
+           <TableColumn fx:id="loc_longitude" prefWidth="100.0" resizable="false" text="Longitude" />
+           <TableColumn fx:id="loc_region" prefWidth="120.0" resizable="false" text="Region" />
+           <TableColumn fx:id="loc_country" prefWidth="120.0" resizable="false" text="Country" />
+        </columns>
+      </TableView>
+      <TextField fx:id="latitudeAddField" layoutX="303.0" layoutY="201.0" prefHeight="25.0" prefWidth="260.0" />
+      <TextField fx:id="longitudeAddField" layoutX="303.0" layoutY="239.0" prefHeight="25.0" prefWidth="260.0" />
+      <TextField fx:id="regionAddField" layoutX="303.0" layoutY="278.0" prefHeight="25.0" prefWidth="260.0" />
+      <TextField fx:id="countryAddField" layoutX="303.0" layoutY="314.0" prefHeight="25.0" prefWidth="260.0" />
+   </children>
+</AnchorPane>

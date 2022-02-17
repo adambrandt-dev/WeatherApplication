@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="591.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.WeatherSceneController">
+   <children>
+      <Label layoutX="21.0" layoutY="14.0" text="Search by:" wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="21.0" layoutY="543.0" mnemonicParsing="false" onAction="#switchToStartScene" text="Back" />
+      <CheckBox fx:id="countryChoiceBox" layoutX="19.0" layoutY="49.0" mnemonicParsing="false" text="Country" />
+      <CheckBox fx:id="regionChoiceBox" layoutX="90.0" layoutY="49.0" mnemonicParsing="false" text="Region" />
+      <CheckBox fx:id="dateChoiceBox" layoutX="155.0" layoutY="49.0" mnemonicParsing="false" text="Date" />
+      <CheckBox fx:id="latitudeChoiceBox" layoutX="205.0" layoutY="49.0" mnemonicParsing="false" text="Latitude" />
+      <CheckBox fx:id="longitudeChoiceBox" layoutX="277.0" layoutY="49.0" mnemonicParsing="false" text="Longitude" />
+      <TableView fx:id="table" layoutX="21.0" layoutY="116.0" prefHeight="411.0" prefWidth="776.0">
+        <columns>
+            <TableColumn fx:id="wea_country" minWidth="6.0" prefWidth="60.0" text="Country" />
+            <TableColumn fx:id="wea_region" minWidth="6.0" prefWidth="60.0" text="Region" />
+            <TableColumn fx:id="wea_date" text="Date" />
+            <TableColumn fx:id="wea_latitude" minWidth="6.0" text="Latitude" />
+            <TableColumn fx:id="wea_longitude" minWidth="6.0" text="Longitude" />
+          <TableColumn fx:id="wea_temperature" text="Temperature" />
+          <TableColumn fx:id="wea_pressure" prefWidth="70.0" text="Pressure" />
+            <TableColumn fx:id="wea_humidity" prefWidth="70.0" text="Humidity" />
+            <TableColumn fx:id="wea_wind_direction" prefWidth="100.0" text="Wind direction" />
+            <TableColumn fx:id="wea_wind_speed" prefWidth="100.0" text="Wind speed" />
+        </columns>
+      </TableView>
+      <TextField fx:id="weatherSearchField" layoutX="19.0" layoutY="82.0" prefHeight="25.0" prefWidth="728.0" promptText="Enter the value" />
+      <Button fx:id="filterButton" layoutX="755.0" layoutY="82.0" mnemonicParsing="false" onAction="#checkChoiceBox" text="Filter" />
+      <Button layoutX="762.0" layoutY="543.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
+      <CheckBox fx:id="temperatureChoiceBox" layoutX="358.0" layoutY="49.0" mnemonicParsing="false" text="Temperature" />
+      <CheckBox fx:id="pressureChoiceBox" layoutX="456.0" layoutY="49.0" mnemonicParsing="false" text="Pressure" />
+      <CheckBox fx:id="humidityChoiceBox" layoutX="531.0" layoutY="49.0" mnemonicParsing="false" text="Humidity" />
+      <CheckBox fx:id="windDirectionChoiceBox" layoutX="607.0" layoutY="49.0" mnemonicParsing="false" text="Wind direction" />
+      <CheckBox fx:id="windSpeedChoiceBox" layoutX="712.0" layoutY="49.0" mnemonicParsing="false" text="Wind speed" />
+   </children>
+</AnchorPane>
