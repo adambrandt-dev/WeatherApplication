@@ -8,10 +8,10 @@ import java.sql.SQLException;
 
 public interface Dao {
 
-    void checkChoiceBox(ActionEvent event) throws SQLException;
+    void checkChoiceBox(ActionEvent event)throws SQLException;
     void createTable();
     void searchBy() throws SQLException;
-    void addNew(ActionEvent event) throws SQLException;
+    void addNew();
     void clearField(MouseEvent event);
     void switchToStartScene(ActionEvent event) throws IOException;
     void switchToLocationScene(ActionEvent event) throws IOException;
