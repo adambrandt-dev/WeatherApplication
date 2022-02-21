@@ -22,7 +22,7 @@ import java.sql.Statement;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class WeatherSceneController implements Initializable {
+public class WeatherSceneController extends DaoImpl implements Initializable {
 
     private Stage stage;
     private Scene scene;
@@ -84,6 +84,7 @@ public class WeatherSceneController implements Initializable {
     ObservableList<WeatherTable> observableList = FXCollections.observableArrayList();
     DBConnector dbConnector = new DBConnector();
 
+    //To change
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createTable();
@@ -178,7 +179,7 @@ public class WeatherSceneController implements Initializable {
         }
     }
 
-    private void searchBy() throws SQLException {
+    public void searchBy() throws SQLException {
         PreparedStatement preparedStatement = DBConnector
                 .getConnection()
                 .prepareStatement(query);
@@ -205,18 +206,5 @@ public class WeatherSceneController implements Initializable {
         table.setItems(observableList);
 
     }
-
-    public void switchToStartScene(ActionEvent event) throws IOException {
-        fxmlLoader = FXMLLoader.load(getClass().getResource("StartScene.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(fxmlLoader);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void exit(ActionEvent event){
-        ((Stage) (((Node)event.getSource()).getScene().getWindow())).close();
-    }
-
 
 }
