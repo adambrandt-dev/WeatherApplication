@@ -10,14 +10,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -30,19 +29,49 @@ public class DaoImpl implements Dao{
     private Parent fxmlLoader;
 
     @FXML
+    private CheckBox latitudeChoiceBox;
+    @FXML
+    private CheckBox longitudeChoiceBox;
+    @FXML
+    private CheckBox regionChoiceBox;
+    @FXML
+    private CheckBox countryChoiceBox;
+    @FXML
     private TextField locationSearchField;
+    @FXML
+    public Button filterButton;
+
     //Tableview and data
     @FXML
     private TableView tableView;
+
     private ObservableList<ObservableList> data;
+    private String query;
 
     //DBConnector
     DBConnector dbConnector = new DBConnector();
-
+    public static final int SEARCH_PARAMETER_INDEX = 1;
 
     @Override
-    public void checkChoiceBox() {
+    public void checkChoiceBox(ActionEvent event) throws SQLException{
+        if (latitudeChoiceBox.isSelected() && filterButton.isArmed()) {
+            tableView.getItems().clear();
+            query = "Select * from weather.weather_localization where latitude = ?;";
+            searchBy();
 
+        } else if (longitudeChoiceBox.isSelected() && filterButton.isArmed()) {
+            tableView.getItems().clear();
+            query = "Select * from weather.weather_localization where longitude = ?;";
+            searchBy();
+        } else if (regionChoiceBox.isSelected() && filterButton.isArmed()) {
+            tableView.getItems().clear();
+            query = "Select * from weather.weather_localization where region = ?;";
+            searchBy();
+        } else if (countryChoiceBox.isSelected() && filterButton.isArmed()) {
+            tableView.getItems().clear();
+            query = "Select * from weather.weather_localization where country_name = ?;";
+            searchBy();
+        }
     }
 
     @Override
@@ -66,7 +95,7 @@ public class DaoImpl implements Dao{
                 });
 
                 tableView.getColumns().addAll(col);
-               //System.out.println("Column [" + i + "] ");
+                System.out.println("Column [" + i + "] ");
             }
 
             while (resultSet.next()) {
@@ -76,9 +105,8 @@ public class DaoImpl implements Dao{
                     //Iterate Column
                     row.add(resultSet.getString(i));
                 }
-                //System.out.println("Row [1] added " + row);
+                System.out.println("Row [1] added " + row);
                 data.add(row);
-
             }
             //Add data to TableView
             tableView.setItems(data);
@@ -90,7 +118,39 @@ public class DaoImpl implements Dao{
 
     @Override
     public void searchBy() throws SQLException {
+        PreparedStatement preparedStatement = DBConnector
+                .getConnection()
+                .prepareStatement(query);
 
+        preparedStatement.setString(SEARCH_PARAMETER_INDEX, locationSearchField.getText());
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        for (int i = 0; i < resultSet.getMetaData().getColumnCount(); i++) {
+            //We are using non property style for making dynamic table
+            final int j = i;
+            TableColumn col = new TableColumn(resultSet.getMetaData().getColumnName(i + 1));
+            col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
+                    return new SimpleStringProperty(param.getValue().get(j).toString());
+                }
+            });
+
+            tableView.getColumns().addAll(col);
+            //System.out.println("Column [" + i + "] ");
+        }
+
+        while (resultSet.next()) {
+            //Iterate Row
+            ObservableList<String> row = FXCollections.observableArrayList();
+            for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
+                //Iterate Column
+                row.add(resultSet.getString(i));
+            }
+            //System.out.println("Row [1] added " + row);
+            data.add(row);
+
+        }
     }
 
     @Override

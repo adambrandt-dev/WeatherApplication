@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public interface Dao {
 
-    void checkChoiceBox();
+    void checkChoiceBox(ActionEvent event)throws SQLException;
     void createTable();
     void searchBy() throws SQLException;
     void addNew();
