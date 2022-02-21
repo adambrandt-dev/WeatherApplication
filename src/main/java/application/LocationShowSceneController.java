@@ -1,5 +1,7 @@
 package application;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,17 +15,18 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
-public class LocationShowSceneController implements Initializable {
+public class LocationShowSceneController extends DaoImpl implements Initializable {
 
-    private Stage stage;
-    private Scene scene;
-    private Parent fxmlLoader;
+//    private Stage stage;
+//    private Scene scene;
+//    private Parent fxmlLoader;
 
 
     @FXML
@@ -123,7 +126,7 @@ public class LocationShowSceneController implements Initializable {
         }
     }
 
-    private void searchBy() throws SQLException {
+    public void searchBy() throws SQLException {
         PreparedStatement preparedStatement = DBConnector
                 .getConnection()
                 .prepareStatement(query);
@@ -136,36 +139,30 @@ public class LocationShowSceneController implements Initializable {
                     resultSet.getDouble("longitude"), resultSet.getString("region"), resultSet.getString("country_name")));
         }
 
-        loc_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        loc_latitude.setCellValueFactory(new PropertyValueFactory<>("latitude"));
-        loc_longitude.setCellValueFactory(new PropertyValueFactory<>("longitude"));
-        loc_region.setCellValueFactory(new PropertyValueFactory<>("region"));
-        loc_country.setCellValueFactory(new PropertyValueFactory<>("country"));
+//        loc_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+//        loc_latitude.setCellValueFactory(new PropertyValueFactory<>("latitude"));
+//        loc_longitude.setCellValueFactory(new PropertyValueFactory<>("longitude"));
+//        loc_region.setCellValueFactory(new PropertyValueFactory<>("region"));
+//        loc_country.setCellValueFactory(new PropertyValueFactory<>("country"));
     }
 
+    @Override
     public void clearField(MouseEvent event) {
-        locationSearchField.setText("");
+        super.clearField(event);
     }
 
-
+    @Override
     public void switchToStartScene(ActionEvent event) throws IOException {
-        fxmlLoader = FXMLLoader.load(getClass().getResource("StartScene.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(fxmlLoader);
-        stage.setScene(scene);
-        stage.show();
+        super.switchToStartScene(event);
     }
 
+    @Override
     public void switchToLocationScene(ActionEvent event) throws IOException {
-        fxmlLoader = FXMLLoader.load(getClass().getResource("LocationScene.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(fxmlLoader);
-        stage.setScene(scene);
-        stage.show();
+        super.switchToLocationScene(event);
     }
 
-    public void exit(ActionEvent event){
-        ((Stage) (((Node)event.getSource()).getScene().getWindow())).close();
+    @Override
+    public void exit(ActionEvent event) {
+        super.exit(event);
     }
-
 }
