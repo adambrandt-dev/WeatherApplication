@@ -17,5 +17,6 @@ public class LocationShowSceneController extends DaoImpl implements Initializabl
             }
         });
         createTable();
+
     }
 }
