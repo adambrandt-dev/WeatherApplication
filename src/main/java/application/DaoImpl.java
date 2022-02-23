@@ -21,12 +21,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DaoImpl implements Dao{
+public class DaoImpl implements Dao {
 
     //view
-     Stage stage;
-     Scene scene;
-     Parent fxmlLoader;
+    private Stage stage;
+    private Scene scene;
+    private Parent fxmlLoader;
 
     @FXML
     private CheckBox latitudeChoiceBox;
@@ -43,7 +43,7 @@ public class DaoImpl implements Dao{
 
     //Tableview and data
     @FXML
-    private TableView tableView;
+    TableView tableView;
 
     private ObservableList<ObservableList> observableList;
     private String query;
@@ -53,7 +53,7 @@ public class DaoImpl implements Dao{
     public static final int SEARCH_PARAMETER_INDEX = 1;
 
     @Override
-    public void checkChoiceBox(ActionEvent event) throws SQLException{
+    public void checkChoiceBox(ActionEvent event) throws SQLException {
         if (latitudeChoiceBox.isSelected() && filterButton.isArmed()) {
             tableView.getItems().clear();
             query = "Select * from weather.weather_localization where latitude = ?;";
@@ -81,7 +81,7 @@ public class DaoImpl implements Dao{
         String query = "Select * from weather.weather_localization;";
 
         try {
-            Statement statement = dbConnector.getConnection().createStatement();
+            Statement statement = DBConnector.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
             for (int i = 0; i < resultSet.getMetaData().getColumnCount(); i++) {
@@ -175,6 +175,7 @@ public class DaoImpl implements Dao{
     @Override
     public void switchToStartScene(ActionEvent event) throws IOException {
         fxmlLoader = FXMLLoader.load(getClass().getResource("StartScene.fxml"));
+        stage = new Stage();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader);
         stage.setScene(scene);
@@ -192,8 +193,8 @@ public class DaoImpl implements Dao{
 
     @Override
     public void switchToLocationShowScene(ActionEvent event) throws IOException {
-        fxmlLoader  = FXMLLoader.load(getClass().getResource("LocationShowScene.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        fxmlLoader = FXMLLoader.load(getClass().getResource("LocationShowScene.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader);
         stage.setScene(scene);
         stage.show();
@@ -201,8 +202,8 @@ public class DaoImpl implements Dao{
 
     @Override
     public void switchToWeatherScene(ActionEvent event) throws IOException {
-        fxmlLoader  = FXMLLoader.load(getClass().getResource("WeatherScene.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        fxmlLoader = FXMLLoader.load(getClass().getResource("WeatherScene.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader);
         stage.setScene(scene);
         stage.show();
@@ -210,6 +211,6 @@ public class DaoImpl implements Dao{
 
     @Override
     public void exit(ActionEvent event) {
-        ((Stage) (((Node)event.getSource()).getScene().getWindow())).close();
+        ((Stage) (((Node) event.getSource()).getScene().getWindow())).close();
     }
 }
