@@ -24,9 +24,9 @@ import java.sql.Statement;
 public class DaoImpl implements Dao{
 
     //view
-    private Stage stage;
-    private Scene scene;
-    private Parent fxmlLoader;
+     Stage stage;
+     Scene scene;
+     Parent fxmlLoader;
 
     @FXML
     private CheckBox latitudeChoiceBox;
@@ -45,7 +45,7 @@ public class DaoImpl implements Dao{
     @FXML
     private TableView tableView;
 
-    private ObservableList<ObservableList> data;
+    private ObservableList<ObservableList> observableList;
     private String query;
 
     //DBConnector
@@ -76,8 +76,8 @@ public class DaoImpl implements Dao{
 
     @Override
     public void createTable() {
-        //tableView.getItems().clear();
-        data = FXCollections.observableArrayList();
+        tableView.getItems().clear();
+        observableList = FXCollections.observableArrayList();
         String query = "Select * from weather.weather_localization;";
 
         try {
@@ -106,10 +106,21 @@ public class DaoImpl implements Dao{
                     row.add(resultSet.getString(i));
                 }
                 System.out.println("Row [1] added " + row);
-                data.add(row);
+                observableList.add(row);
             }
             //Add data to TableView
-            tableView.setItems(data);
+            tableView.setItems(observableList);
+
+//            System.out.println("-------------------");
+//            for (int i = 0; i < observableList.size(); i++){
+//                System.out.println(observableList.get(i));
+//            }
+
+            System.out.println("-------------------");
+            System.out.println(tableView.getItems().toString());
+            System.out.println("-------------------");
+
+
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error on Building Data");
@@ -137,7 +148,7 @@ public class DaoImpl implements Dao{
             });
 
             tableView.getColumns().addAll(col);
-            //System.out.println("Column [" + i + "] ");
+            System.out.println("Column [" + i + "] ");
         }
 
         while (resultSet.next()) {
@@ -147,8 +158,12 @@ public class DaoImpl implements Dao{
                 //Iterate Column
                 row.add(resultSet.getString(i));
             }
-            //System.out.println("Row [1] added " + row);
-            data.add(row);
+            System.out.println("Row [1] added " + row);
+
+//            observableList.add(row);
+//            for (int i = 0; i < observableList.size(); i++){
+//                System.out.println(observableList.get(i));
+//            }
 
         }
     }

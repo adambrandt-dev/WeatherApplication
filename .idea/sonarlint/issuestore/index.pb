@@ -52,3 +52,13 @@ Z
 +src/main/java/application/WeatherTable.java,9\7\975abe2eb4157862d28a872027eb743ff5da4ec0
 e
 5src/main/java/application/WeatherSceneController.java,9\6\9616357b47199499a3eca3a3592a5660f43213c2
+N
+src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
+\
+,src/main/java/application/LocationTable.java,d\7\d73fbb102be089355086edb8f38eaba146ea5547
+Z
+*src/main/java/application/DBConnector.java,e\9\e9af0c92f95192ceb625534edfccc9fc5a006bff
+R
+"src/main/java/application/Dao.java,8\5\85658b1493885869371f03a4086e51d038fe1b41
+f
+6src/main/java/application/LocationSceneController.java,d\c\dcb16e0dd3550e1fd58677e6e5820243a847edcb
