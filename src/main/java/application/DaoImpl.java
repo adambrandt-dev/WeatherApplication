@@ -45,7 +45,7 @@ public class DaoImpl implements Dao {
     @FXML
     TableView tableView;
 
-    private ObservableList<ObservableList> observableList;
+    private ObservableList<ObservableList> observableList = FXCollections.observableArrayList();
     private String query;
 
     //DBConnector
@@ -77,13 +77,19 @@ public class DaoImpl implements Dao {
     @Override
     public void createTable() {
         tableView.getItems().clear();
-        observableList = FXCollections.observableArrayList();
+        tableView.getColumns().clear();
+        System.out.println("-------------------");
+        System.out.println(tableView.getColumns().toString());
+        System.out.println(tableView.getItems().toString());
+        System.out.println("-------------------");
         String query = "Select * from weather.weather_localization;";
 
         try {
             Statement statement = DBConnector.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
+
+            //Error appear when there is a null value in one of the columns at first row from the database
             for (int i = 0; i < resultSet.getMetaData().getColumnCount(); i++) {
                 //We are using non property style for making dynamic table
                 final int j = i;
@@ -111,10 +117,10 @@ public class DaoImpl implements Dao {
             //Add data to TableView
             tableView.setItems(observableList);
 
-
-            System.out.println("-------------------");
-            System.out.println(tableView.getItems().toString());
-            System.out.println("-------------------");
+//            System.out.println("-------------------");
+//            System.out.println(tableView.getColumns().toString());
+//            System.out.println(tableView.getItems().toString());
+//            System.out.println("-------------------");
 
 
         } catch (Exception e) {
