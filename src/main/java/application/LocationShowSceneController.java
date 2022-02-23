@@ -1,6 +1,9 @@
 package application;
 
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableView;
+
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -9,6 +12,7 @@ public class LocationShowSceneController extends DaoImpl implements Initializabl
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        createTable();
         filterButton.setOnAction(event -> {
             try {
                 checkChoiceBox(event);
@@ -16,7 +20,5 @@ public class LocationShowSceneController extends DaoImpl implements Initializabl
                 e.printStackTrace();
             }
         });
-        createTable();
-
     }
 }
