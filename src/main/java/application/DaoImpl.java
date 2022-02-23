@@ -111,10 +111,6 @@ public class DaoImpl implements Dao{
             //Add data to TableView
             tableView.setItems(observableList);
 
-//            System.out.println("-------------------");
-//            for (int i = 0; i < observableList.size(); i++){
-//                System.out.println(observableList.get(i));
-//            }
 
             System.out.println("-------------------");
             System.out.println(tableView.getItems().toString());
@@ -129,6 +125,7 @@ public class DaoImpl implements Dao{
 
     @Override
     public void searchBy() throws SQLException {
+        tableView.getItems().clear();
         PreparedStatement preparedStatement = DBConnector
                 .getConnection()
                 .prepareStatement(query);
@@ -159,11 +156,8 @@ public class DaoImpl implements Dao{
                 row.add(resultSet.getString(i));
             }
             System.out.println("Row [1] added " + row);
+            observableList.add(row);
 
-//            observableList.add(row);
-//            for (int i = 0; i < observableList.size(); i++){
-//                System.out.println(observableList.get(i));
-//            }
 
         }
     }
