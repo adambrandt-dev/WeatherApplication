@@ -18,8 +18,8 @@ public class DBConnector {
             this.connection = DriverManager.getConnection(url, user, password);
             System.out.println("Connected");
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
         }
     }
 

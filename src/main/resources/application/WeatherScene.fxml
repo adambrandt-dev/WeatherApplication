@@ -22,7 +22,7 @@
       <CheckBox fx:id="dateChoiceBox" layoutX="155.0" layoutY="49.0" mnemonicParsing="false" text="Date" />
       <CheckBox fx:id="latitudeChoiceBox" layoutX="205.0" layoutY="49.0" mnemonicParsing="false" text="Latitude" />
       <CheckBox fx:id="longitudeChoiceBox" layoutX="277.0" layoutY="49.0" mnemonicParsing="false" text="Longitude" />
-      <TableView fx:id="table" layoutX="21.0" layoutY="116.0" prefHeight="411.0" prefWidth="776.0">
+      <TableView fx:id="tableView" layoutX="21.0" layoutY="116.0" prefHeight="411.0" prefWidth="776.0">
         <columns>
             <TableColumn fx:id="wea_country" minWidth="6.0" prefWidth="60.0" text="Country" />
             <TableColumn fx:id="wea_region" minWidth="6.0" prefWidth="60.0" text="Region" />
@@ -36,7 +36,7 @@
             <TableColumn fx:id="wea_wind_speed" prefWidth="100.0" text="Wind speed" />
         </columns>
       </TableView>
-      <TextField fx:id="weatherSearchField" layoutX="19.0" layoutY="82.0" prefHeight="25.0" prefWidth="728.0" promptText="Enter the value" />
+      <TextField fx:id="searchField" layoutX="19.0" layoutY="82.0" prefHeight="25.0" prefWidth="728.0" promptText="Enter the value" />
       <Button fx:id="filterButton" layoutX="755.0" layoutY="82.0" mnemonicParsing="false" onAction="#checkChoiceBox" text="Filter" />
       <Button layoutX="762.0" layoutY="543.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
       <CheckBox fx:id="temperatureChoiceBox" layoutX="358.0" layoutY="49.0" mnemonicParsing="false" text="Temperature" />
