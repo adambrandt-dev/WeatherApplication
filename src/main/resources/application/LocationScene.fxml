@@ -38,7 +38,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TableView fx:id="table" layoutX="37.0" layoutY="27.0" prefHeight="136.0" prefWidth="522.0">
+      <TableView fx:id="tableView" layoutX="37.0" layoutY="27.0" prefHeight="136.0" prefWidth="522.0">
         <columns>
            <TableColumn fx:id="loc_id" resizable="false" text="ID" />
            <TableColumn fx:id="loc_latitude" prefWidth="100.0" resizable="false" text="Latitude" />

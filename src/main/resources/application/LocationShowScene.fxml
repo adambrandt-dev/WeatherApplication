@@ -20,7 +20,7 @@
       <CheckBox fx:id="longitudeChoiceBox" layoutX="120.0" layoutY="57.0" mnemonicParsing="false" onAction="#checkChoiceBox" text="Longitude" />
       <CheckBox fx:id="regionChoiceBox" layoutX="208.0" layoutY="57.0" mnemonicParsing="false" onAction="#checkChoiceBox" text="Region" />
       <CheckBox fx:id="countryChoiceBox" layoutX="287.0" layoutY="57.0" mnemonicParsing="false" onAction="#checkChoiceBox" text="Country" />
-      <TextField fx:id="locationSearchField" layoutX="38.0" layoutY="90.0" onMouseClicked="#clearField" prefHeight="25.0" prefWidth="459.0" promptText="Enter the value" />
+      <TextField fx:id="searchField" layoutX="38.0" layoutY="90.0" onMouseClicked="#clearField" prefHeight="25.0" prefWidth="459.0" promptText="Enter the value" />
       <Button fx:id="filterButton" layoutX="519.0" layoutY="90.0" mnemonicParsing="false" onAction="#searchBy" text="Filter" />
       <Button layoutX="519.0" layoutY="354.0" mnemonicParsing="false" onAction="#exit" prefHeight="25.0" prefWidth="43.0" text="Exit" />
       <Button layoutX="454.0" layoutY="354.0" mnemonicParsing="false" onAction="#switchToLocationScene" prefHeight="25.0" prefWidth="43.0" text="Add" />

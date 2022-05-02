@@ -9,9 +9,11 @@ import java.sql.SQLException;
 public interface Dao {
 
     void checkChoiceBox(ActionEvent event)throws SQLException;
+    void checkWChoiceBox(ActionEvent event)throws SQLException;
     void createTable();
+    void createWeatherTable();
     void searchBy() throws SQLException;
-    void addNew();
+    void addLocation(ActionEvent event) throws SQLException;
     void clearField(MouseEvent event);
     void switchToStartScene(ActionEvent event) throws IOException;
     void switchToLocationScene(ActionEvent event) throws IOException;
