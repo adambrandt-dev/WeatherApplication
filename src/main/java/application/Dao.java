@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public interface Dao {
 
     void checkChoiceBox(ActionEvent event)throws SQLException;
-    void checkWChoiceBox(ActionEvent event)throws SQLException;
+    void checkWeatherChoiceBox(ActionEvent event)throws SQLException;
     void createTable();
     void createWeatherTable();
     void searchBy() throws SQLException;

@@ -17,7 +17,7 @@ public class WeatherSceneController extends DaoImpl implements Initializable {
         createWeatherTable();
         filterButton.setOnAction(event -> {
             try {
-                checkWChoiceBox(event);
+                checkWeatherChoiceBox(event);
             } catch (SQLException e) {
                 e.printStackTrace();
             }

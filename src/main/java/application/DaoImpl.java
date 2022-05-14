@@ -104,7 +104,7 @@ public class DaoImpl implements Dao {
     }
 
     @Override
-    public void checkWChoiceBox(ActionEvent event) throws SQLException {
+    public void checkWeatherChoiceBox(ActionEvent event) throws SQLException {
         if (countryChoiceBox.isSelected() && filterButton.isArmed()) {
             tableView.getItems().clear();
             query = "select weather_localization.country_name, weather_localization.region, weather_date, weather_localization.latitude, weather_localization.longitude," +
